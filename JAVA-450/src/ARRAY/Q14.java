@@ -33,7 +33,7 @@ public class Q14 {
             int end = arr[i][1];
             for (int j = i + 1; j < arr.length; j++) {
                 if (arr[j][0] <= end  ) {
-                    if(end > arr[j][1] )
+                    if(end < arr[j][1] )
                         end = arr[j][1];
 
                     i++;
