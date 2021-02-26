@@ -13,6 +13,7 @@ public class Q12 {
 
         mergeArrayNoSpace(A1, A2, A1.length, A2.length);
         for (int i = 0; i < A1.length; i++) {
+
             System.out.print(A1[i]+" ");
         }
         System.out.println();
