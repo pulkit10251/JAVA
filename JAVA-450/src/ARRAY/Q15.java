@@ -4,7 +4,7 @@ public class Q15 {
 
     public static void main(String[] args) {
         // Ques 15 : next permutation
-        int[] arr = {1,5,1};
+        int[] arr = {1,3,2};
 
         nextPermutation(arr);
 
