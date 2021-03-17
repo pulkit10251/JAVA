@@ -37,7 +37,7 @@ public class Q3 {
                 if (get < 0) {
                     get = Math.abs(get) - 1;
                 } else {
-                    while (get < matrix[i].length && matrix[i][get] == mid) {
+                        while (get < matrix[i].length && matrix[i][get] == mid) {
                         get += 1;
                     }
                 }
