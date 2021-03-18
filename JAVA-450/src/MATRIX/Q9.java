@@ -24,6 +24,7 @@ public class Q9 {
             }
         }
 
+
         for (int i = 0; i < k-1 ; i++) {
             minHeap.poll();
         }
