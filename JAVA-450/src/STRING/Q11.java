@@ -4,7 +4,8 @@ public class Q11 {
 
     public static void main(String[] args) {
         String str = "ABC";
-        Permutations(str,0, 2);
+        Permutations(str,0, str.length()-1);
+        System.out.println(str);
     }
 
     public static void Permutations(String str, int l, int r) {
