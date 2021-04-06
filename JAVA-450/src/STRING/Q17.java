@@ -1,64 +1,37 @@
 package STRING;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Q17 {
 
-    public final static int d = 256;
     public static void main(String[] args) {
-        String Text = "Pul se Pulli tu h kulli uliuli";
-        String Pattern = "ull";
+        String[] B = { "i", "like", "sam", "sung", "samsung", "mobile",
+                "ice","cream", "icecream", "man", "go", "mango" };
 
-        RabinKarpAlgo(Text, Pattern, 101);
+        ArrayList<String> li =  new ArrayList<>(Arrays.asList(B));
+        String A = "ilikesamsung";
+
+        System.out.println(WordWrap(A, li));
+
     }
 
-    public static void RabinKarpAlgo(String Text, String Pattern, int q){
-
-        int M = Pattern.length();
-        int N = Text.length();
-
-        int i, j;
-        int p = 0;
-        int t = 0;
-        int h = 1;
+    public static int WordWrap(String A, ArrayList<String> B) {
+        int[] dp = new int[A.length()];
 
 
-        for (i = 0; i < M-1; i++)
-            h = (h*d)%q;
-
-        System.out.println(h);
-
-        for (i = 0; i < M; i++)
-        {
-            p += (Pattern.charAt(i) * (int)Math.pow(d,M-1-i));
-            t += (Text.charAt(i) * (int)Math.pow(d,M-1-i));
-        }
-
-
-        p = p%q;
-        t = t%q;
-        System.out.println(p +"   "+t);
-
-        for(i = 0; i <=N-M; i++){
-            if(p == t){
-                for(j = 0; j < M;j++){
-                    if(Text.charAt(i+j) != Pattern.charAt(j)){
-                        break;
+        for (int i = 0; i < dp.length; i++) {
+            for (int j = 0; j <= i; j++) {
+                String w2check = A.substring(j, i + 1);
+                if (B.contains(w2check))
+                    if (j > 0) {
+                        dp[i] += dp[j - 1];
+                    } else {
+                        dp[i] += 1;
                     }
-                }
-
-                if(j == M){
-                    System.out.println("Pattern Found at index : "+ i);
-                }
-            }
-
-            if( i < N-M){
-                t = (d*(t - Text.charAt(i)*h) + Text.charAt(i+M))%q;
-
-                if(t < 0){
-                    t = t+q;
-                }
             }
         }
 
-
+        return dp[A.length()-1];
     }
 }

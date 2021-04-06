@@ -1,37 +1,34 @@
 package STRING;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Stack;
 
 public class Q16 {
 
     public static void main(String[] args) {
-        String[] B = { "i", "like", "sam", "sung", "samsung", "mobile",
-                "ice","cream", "icecream", "man", "go", "mango" };
-
-        ArrayList<String> li =  new ArrayList<>(Arrays.asList(B));
-        String A = "ilikesamsung";
-
-        System.out.println(WordWrap(A, li));
-
+        System.out.println(BalancedParenthesis("{{[()]}}}"));
     }
 
-    public static int WordWrap(String A, ArrayList<String> B) {
-        int[] dp = new int[A.length()];
+    public static boolean BalancedParenthesis(String str){
+        Stack<Character> stack = new Stack<>();
+        if(str.charAt(0) == '}' || str.charAt(0) == ']' || str.charAt(0)==')'){
+            return false;
+        }
+        for (int i = 0 ; i< str.length(); i++){
+            if(str.charAt(i) == '{' || str.charAt(i) == '[' || str.charAt(i)=='('){
+                stack.push(str.charAt(i));
+            }else
 
-
-        for (int i = 0; i < dp.length; i++) {
-            for (int j = 0; j <= i; j++) {
-                String w2check = A.substring(j, i + 1);
-                if (B.contains(w2check))
-                    if (j > 0) {
-                        dp[i] += dp[j - 1];
-                    } else {
-                        dp[i] += 1;
-                    }
+            if(str.charAt(i) == '}' && !stack.isEmpty() &&  stack.peek() =='{'){
+                stack.pop();
+            }else if(str.charAt(i) == ')' && !stack.isEmpty() &&  stack.peek() =='('){
+                stack.pop();
+            }else if(str.charAt(i) == ']' && !stack.isEmpty() && stack.peek() =='['){
+                stack.pop();
+            }else{
+                stack.push(str.charAt(i));
             }
         }
 
-        return dp[A.length()-1];
+        return stack.isEmpty();
     }
 }

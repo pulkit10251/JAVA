@@ -1,49 +1,37 @@
 package STRING;
 
-import java.util.Stack;
-
 public class Q20 {
 
     public static void main(String[] args) {
-        System.out.println(countReversals("}{{}}{{{"));
+        String[] str = {"2","22","222",
+                "3","33","333",
+                "4","44","444",
+                "5","55","555",
+                "6","66","666",
+                "7","77","777","7777",
+                "8","88","888",
+                "9","99","999","9999"
+        };
+
+        String input = "HELLO BROTHER";
+        printSequence(str, input);
     }
 
-    public static int countReversals(String expr){
-        int len = expr.length();
+    public static void printSequence(String[] str, String input){
+        String output = "";
 
-        if (len%2 != 0)
-            return -1;
+        int n = input.length();
 
-        Stack<Character> s=new Stack<>();
-
-        for (int i=0; i<len; i++)
-        {
-            char c = expr.charAt(i);
-            if (c =='}' && !s.empty())
-            {
-                if (s.peek()=='{')
-                    s.pop();
-                else
-                    s.push(c);
-            }
-            else
-                s.push(c);
-        }
-
-        int red_len = s.size();
-        double open = 0.0;
-        double close = 0.0;
-        while (!s.empty() )
-        {
-
-            if(s.peek() == '{'){
-                open++;
+        for(int i=0; i< n; i++){
+            if(input.charAt(i) == ' '){
+                output += '0';
             }else{
-                close++;
+                int pos = input.charAt(i) - 'A';
+                output = output.concat(str[pos]);
             }
-            s.pop();
         }
 
-        return (int)(Math.ceil(open / 2) + Math.ceil(close/2));
+        System.out.println(output);
     }
+
 }

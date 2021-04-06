@@ -3,35 +3,42 @@ package STRING;
 public class Q19 {
 
     public static void main(String[] args) {
-        String[] str = {"2","22","222",
-                "3","33","333",
-                "4","44","444",
-                "5","55","555",
-                "6","66","666",
-                "7","77","777","7777",
-                "8","88","888",
-                "9","99","999","9999"
-        };
-
-        String input = "HELLO BROTHER";
-        printSequence(str, input);
+        KMP("aaaa");
     }
 
-    public static void printSequence(String[] str, String input){
-        String output = "";
+    public static void KMP(String s){
+        int M = s.length();
 
-        int n = input.length();
+        int[] lps = new int[M];
+        lps[0] = 0;
 
-        for(int i=0; i< n; i++){
-            if(input.charAt(i) == ' '){
-                output += '0';
-            }else{
-                int pos = input.charAt(i) - 'A';
-                output = output.concat(str[pos]);
+
+        int len = 0;
+
+        int i = 1;
+        while (i < M){
+            if(s.charAt(i) == s.charAt(len)){
+                len++;
+                lps[i] = len;
+                i++;
+            }
+            else{
+                if(len!=0 ){
+                    len = lps[len-1];
+                }else{
+                    lps[i] = 0;
+                    i++;
+                }
             }
         }
 
-        System.out.println(output);
-    }
+        for (int val : lps){
+            System.out.print(val+"  ");
+        }
+        System.out.println();
 
+        int res = lps[M -1];
+        System.out.println(Math.min(res, M /2));
+
+    }
 }

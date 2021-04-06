@@ -2,43 +2,63 @@ package STRING;
 
 public class Q18 {
 
+    public final static int d = 256;
     public static void main(String[] args) {
-        KMP("aaaa");
+        String Text = "Pul se Pulli tu h kulli uliuli";
+        String Pattern = "ull";
+
+        RabinKarpAlgo(Text, Pattern, 101);
     }
 
-    public static void KMP(String s){
-        int M = s.length();
+    public static void RabinKarpAlgo(String Text, String Pattern, int q){
 
-        int[] lps = new int[M];
-        lps[0] = 0;
+        int M = Pattern.length();
+        int N = Text.length();
+
+        int i, j;
+        int p = 0;
+        int t = 0;
+        int h = 1;
 
 
-        int len = 0;
+        for (i = 0; i < M-1; i++)
+            h = (h*d)%q;
 
-        int i = 1;
-        while (i < M){
-            if(s.charAt(i) == s.charAt(len)){
-                len++;
-                lps[i] = len;
-                i++;
+        System.out.println(h);
+
+        for (i = 0; i < M; i++)
+        {
+            p += (Pattern.charAt(i) * (int)Math.pow(d,M-1-i));
+            t += (Text.charAt(i) * (int)Math.pow(d,M-1-i));
+        }
+
+
+        p = p%q;
+        t = t%q;
+        System.out.println(p +"   "+t);
+
+        for(i = 0; i <=N-M; i++){
+            if(p == t){
+                for(j = 0; j < M;j++){
+                    if(Text.charAt(i+j) != Pattern.charAt(j)){
+                        break;
+                    }
+                }
+
+                if(j == M){
+                    System.out.println("Pattern Found at index : "+ i);
+                }
             }
-            else{
-                if(len!=0 ){
-                    len = lps[len-1];
-                }else{
-                    lps[i] = 0;
-                    i++;
+
+            if( i < N-M){
+                t = (d*(t - Text.charAt(i)*h) + Text.charAt(i+M))%q;
+
+                if(t < 0){
+                    t = t+q;
                 }
             }
         }
 
-        for (int val : lps){
-            System.out.print(val+"  ");
-        }
-        System.out.println();
-
-        int res = lps[M -1];
-        System.out.println(Math.min(res, M /2));
 
     }
 }
