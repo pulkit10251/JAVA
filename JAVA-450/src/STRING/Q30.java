@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Q30 {
 
     public static void main(String[] args) {
-        System.out.println(swapCount("[]][]["));
+        System.out.println(swapCount("[]][][]["));
     }
 
     public static int swapCount(String s) {
@@ -38,7 +38,7 @@ public class Q30 {
                 str[li.get(p)] = temp;
                 ++p;
 
-
+                System.out.println(str);
                 count =1;
             }
 
