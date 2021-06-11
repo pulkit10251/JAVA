@@ -35,6 +35,9 @@ public class BinaryTree {
         Scanner s = new Scanner(System.in);
         this.root = takeInput(s, null, false);
     }
+    BinaryTree(String str){
+
+    }
 
     private Node takeInput(Scanner s, Node parent, boolean isLOR) {
         if (parent == null) {
