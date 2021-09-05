@@ -12,21 +12,25 @@ public class LongestPalindromicSubsequence {
 
     public static int LongestPalindromeSubsequences(String str) {
         int n = str.length();
-        int[][] dp = new int[n + 1][n + 1];
-        StringBuilder str1 = new StringBuilder(str);
-        String rev = str1.reverse().toString();
+        int[][] dp = new int[n][n];
 
-        for (int i = 0; i <= n; i++) {
-            for (int j = 0; j <= n; j++) {
-                if (i == 0 || j == 0) {
-                    dp[i][j] = 0;
-                } else if (str.charAt(i - 1) == rev.charAt(j - 1)) {
-                    dp[i][j] = dp[i - 1][j - 1] + 1;
-                } else {
-                    dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
+        for(int g = 0; g < n;g++){
+            for(int i =0, j = g; j< n;j++, i++){
+                if(g==0){
+                    dp[i][j] = 1;
+                }else if(g==1){
+                    dp[i][j] = str.charAt(i) == str.charAt(j)? 2:1;
+                }else {
+                    if (str.charAt(i) == str.charAt(j)) {
+                        dp[i][j] = 2 + dp[i + 1][j - 1];
+                    } else {
+                        dp[i][j] = Math.max(dp[i + 1][j], dp[i][j - 1]);
+                    }
                 }
             }
         }
-        return dp[n][n];
+
+
+        return dp[0][n-1];
     }
 }
