@@ -20,9 +20,6 @@ public class BestTimeToSellStocks1 {
                 profitSoFar = Math.max(profitSoFar, arr[i]- minSoFar);
             }
         }
-
         System.out.println(profitSoFar);
-
-
     }
 }
