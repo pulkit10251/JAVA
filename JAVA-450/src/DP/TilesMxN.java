@@ -17,14 +17,13 @@ public class TilesMxN {
 
         for (int i = 1; i <= n ; i++) {
             if( i < m){
-                dp[i] = 0;
+                dp[i] = i;
             }else if(i == m){
                 dp[i] = 2;
             }else {
                 dp[i] = dp[i - 1] + dp[i - m];
             }
         }
-                
 
         return dp[n];
     }

@@ -30,7 +30,6 @@ public class EggDrop {
             }
         }
 
-        System.out.println(Integer.parseInt("+999595141"));
         return dp[n][k];
     }
 }

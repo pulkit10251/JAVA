@@ -10,7 +10,7 @@ public class BestTimeToSellInfiniteTrans {
         for (int i = 0; i <  n; i++) {
             arr[i] = sc.nextInt();
         }
-        int k = sc.nextInt();
+        int k = sc.nextInt(); // Transaction fee
 
         int obsp = -arr[0];
         int ossp = 0;

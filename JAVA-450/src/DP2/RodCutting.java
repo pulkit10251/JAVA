@@ -21,7 +21,6 @@ public class RodCutting {
             dp[i] = max;
             System.out.print(dp[i]+" ");
         }
-
         System.out.println(dp[n]);
     }
 }
